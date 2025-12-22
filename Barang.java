@@ -1,116 +1,65 @@
-package tokoOnline;
+package com.mycompany.tokoOnline;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Barang {
-    ArrayList<String> namaBarang = new ArrayList<String>();
-    ArrayList<Integer> stok = new ArrayList<Integer>();
-    ArrayList<Integer> harga = new ArrayList<Integer>();
 
-    public Barang () {
-        this.namaBarang.add("Doritos Big");
-        this.stok.add(10);
-        this.harga.add(9000);
-        
-        this.namaBarang.add("Indomini");
-        this.stok.add(20);
-        this.harga.add(2000);
-        
-        this.namaBarang.add("Toblerone");
-        this.stok.add(1);
-        this.harga.add(6000);
+    private ArrayList<String> namaBarang = new ArrayList<>();
+    private ArrayList<Integer> stok = new ArrayList<>();
+    private ArrayList<Integer> harga = new ArrayList<>();
+    private ArrayList<String> terakhirMasuk = new ArrayList<>();
+    private ArrayList<String> terakhirKeluar = new ArrayList<>();
+
+    // 🔹 INTEGRASI KATEGORI
+    private KategoriBarang kategoriBarang = new KategoriBarang();
+
+    public Barang() {
+        tambahDataBaru("Kalung mutiara", "Aksesoris", 10, 9000);
+        tambahDataBaru("cincin manik", "Cincin", 20, 2000);
+        tambahDataBaru("Gelang tali", "Gelang", 1, 6000);
     }
-    
-    public void addBarang(){
-        Scanner i = new Scanner(System.in);
-        
-        System.out.println("Tambah Barang");
-        System.out.print("\nMasukkan nama barang: ");
-        String bar = i.next();
-        setNamaBarang(bar);
-        System.out.print("Berapa stok yang mau dimasukkan: ");
-        int stonk = i.nextInt();
-        setStok(stonk);
-        System.out.print("Masukkan harga per 1 barangnya? ");
-        int har = i.nextInt();
-        setHarga(har);
-        
-        System.out.println("\nReview");
-        int ban = getJmlBarang();
-        System.out.println("\nTabel Barang\n\n| ID |\t| Nama Barang |\t| Stok |\t| Harga |");
-        for (int j = 0; j < ban; j++) {
-            System.out.println("| "+j+" |\t| "+getNamaBarang(j) + " |\t| " + getStok(j)+ " |\t\t| " + getHarga(j)+" |");
+
+    private void tambahDataBaru(String nama, String kategori, int s, int h) {
+        namaBarang.add(nama);
+        stok.add(s);
+        harga.add(h);
+        terakhirMasuk.add("-");
+        terakhirKeluar.add("-");
+        kategoriBarang.tambahKategori(kategori);
+    }
+
+    public int getJmlBarang() { return namaBarang.size(); }
+    public String getNamaBarang(int id) { return namaBarang.get(id); }
+    public int getStok(int id) { return stok.get(id); }
+    public int getHarga(int id) { return harga.get(id); }
+
+    public void setNamaBarang(String nama, String kategori) {
+        namaBarang.add(nama);
+        stok.add(0);
+        harga.add(0);
+        terakhirMasuk.add("-");
+        terakhirKeluar.add("-");
+        kategoriBarang.tambahKategori(kategori);
+    }
+
+    public String getKategori(int id) {
+        return kategoriBarang.getKategori(id);
+    }
+
+    public void editStok(int id, int jumlah) throws StokHabisException {
+        if (jumlah < 0) {
+            throw new StokHabisException(namaBarang.get(id));
         }
-    }
-    
-    public void editBarang() {
-        Scanner i = new Scanner(System.in);
-        
-        System.out.println("Edit Barang");
-        System.out.println("\nList yang tersedia");
-        int ban = getJmlBarang();
-        System.out.println("\nTabel Barang\n\n| ID |\t| Nama Barang |\t| Stok |\t| Harga |");
-        for (int j = 0; j < ban; j++) {
-            System.out.println("| "+j+" |\t| "+getNamaBarang(j) + " |\t| " + getStok(j)+ " |\t\t| " + getHarga(j)+" |");
-        }
-        
-        System.out.print("\nMasukkan ID barang yang mau di edit > ");
-        int idBar = i.nextInt();
-        System.out.print("\nMasukkan nama barang baru > ");
-        String namaEdit = i.next();
-        System.out.print("\nMasukkan stok barang > ");
-        int stokedit = i.nextInt();
-        System.out.print("\nMasukkan harga barang baru > ");
-        int hargaedit = i.nextInt();
-        editNamaBarang(idBar, namaEdit);
-        editStok(idBar, stokedit);
-        editHarga(idBar, hargaedit);
-        
-        System.out.println("\nReview");
-        System.out.println("\nTabel Barang\n\n| ID |\t| Nama Barang |\t| Stok |\t| Harga |");
-        for (int j = 0; j < ban; j++) {
-            System.out.println("| "+j+" |\t| "+getNamaBarang(j) + " |\t| " + getStok(j)+ " |\t\t| " + getHarga(j)+" |");
-        }
+        stok.set(id, jumlah);
     }
 
-    public int getJmlBarang () {
-        return this.namaBarang.size();
+    public void editHarga(int id, int h) {
+        harga.set(id, h);
     }
 
-    public void setNamaBarang (String barang) {
-        this.namaBarang.add(barang);
-    }
+    public String getWaktuMasuk(int id) { return terakhirMasuk.get(id); }
+    public void setWaktuMasuk(int id, String waktu) { terakhirMasuk.set(id, waktu); }
 
-    public String getNamaBarang (int brg) {
-        return this.namaBarang.get(brg);
-    }
-    
-    public void editNamaBarang (int id, String nama) {
-        this.namaBarang.set(id, nama);
-    }
-
-    public void setStok (int stok) {
-        this.stok.add(stok);
-    }
-
-    public int getStok (int stk) {
-        return this.stok.get(stk);
-    }
-
-    public void editStok (int a, int b) {
-        this.stok.set(a, b);
-    }
-
-    public void setHarga (int a) {
-        this.harga.add(a);
-    }
-
-    public int getHarga (int a) {
-        return this.harga.get(a);
-    }
-    
-    public void editHarga (int id, int harga) {
-        this.harga.set(id, harga);
-    }
+    public String getWaktuKeluar(int id) { return terakhirKeluar.get(id); }
+    public void setWaktuKeluar(int id, String waktu) { terakhirKeluar.set(id, waktu); }
 }
