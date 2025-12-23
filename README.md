@@ -3,7 +3,9 @@ Proyek ini adalah aplikasi manajemen inventori berbasis desktop yang dikembangka
 
 # Anggota Kelompok 5
 **Muhana Fawwas Sausan** 
+
 **Nisa Alfiatur Rohmah** 
+
 **Fatimah Nur'aini** 
 
 # Fitur Utama
