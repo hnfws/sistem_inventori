@@ -11,6 +11,7 @@ Proyek ini adalah aplikasi manajemen inventori berbasis desktop yang dikembangka
 # Fitur Utama
 
 Sesuai dengan tema **Sistem Inventori Toko Online**, aplikasi ini memiliki fitur:
+
 **Manajemen Produk:** Menambah data produk baru, memperbarui harga, dan mengelola stok melalui method khusus.
 
 **Panel Admin & Gudang:** Pemisahan antarmuka untuk tugas administratif dan pencatatan log barang keluar secara *real-time*.
@@ -25,15 +26,20 @@ Sesuai dengan tema **Sistem Inventori Toko Online**, aplikasi ini memiliki fitur
 ## 🛠️ Implementasi OOP & Teknis
 
 Aplikasi ini menerapkan prinsip-prinsip utama PBO sesuai instruksi:
+
 **1. Inheritance & Relasi:** Penggunaan kelas `KategoriBarang` untuk mendukung pengelompokan produk.
+
 **2. Encapsulation:** Penyembunyian data pada atribut kelas `Barang` dengan akses melalui getter dan setter.
+
 **3. Exception Handling:** Implementasi `StokHabisException` untuk menangani error saat stok tidak mencukupi.
+
 **4. Data Handling:** Penggunaan `ArrayList` untuk penyimpanan data produk yang dinamis.
+
 **5. Swing GUI:** Penggunaan `BorderLayout`, `JTable`, dan `JTabbedPane` untuk antarmuka yang interaktif.
 
 # 📂 Struktur Repositori
 
-sistem_inventory
+```sistem_inventory
 
 ├── src/
 
@@ -50,6 +56,7 @@ sistem_inventory
 ├── .gitignore                  # File pengabaian (out/, *.class)
 
 └── README.md                   # Dokumentasi proyek
+```
 
 # ⚙️ Cara Menjalankan
 
