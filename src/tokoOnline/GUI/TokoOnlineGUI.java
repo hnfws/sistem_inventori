@@ -7,7 +7,7 @@ import java.awt.event.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import tokoOnline.BackEnd.Barang;
-import tokoOnline.BarangController;
+import tokoOnline.BarangController.*;
 
 
 public class TokoOnlineGUI extends JFrame {
