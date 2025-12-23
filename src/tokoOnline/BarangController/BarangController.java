@@ -2,12 +2,12 @@ package tokoOnline.BarangController;
 import tokoOnline.BackEnd.Barang;
 import tokoOnline.BackEnd.StokHabisException;
 
-public class InventoryController {
+public class BarangController {
     private Barang barang;
     private int totalQtyMasuk = 0;
     private int totalQtyKeluar = 0;
 
-    public InventoryController(Barang barang) {
+    public BarangController(Barang barang) {
         this.barang = barang;
     }
 
