@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import tokoOnline.BackEnd.Barang;
 import tokoOnline.BarangController;
 
+
 public class TokoOnlineGUI extends JFrame {
     private Barang barang = new Barang();
     private BarangController controller = new BarangController(barang); 
@@ -55,6 +56,7 @@ public class TokoOnlineGUI extends JFrame {
         updateTabel();
     }
 
+    // --- METODE PENDUKUNG IKON ---
     private ImageIcon getScaledIcon(String path, int width, int height) {
         try {
             java.net.URL imgURL = getClass().getResource("/tokoOnline/" + path);
@@ -118,6 +120,7 @@ public class TokoOnlineGUI extends JFrame {
         txtSearch = new JTextField(15);
         txtSearch.setPreferredSize(new Dimension(150, 35));
         
+        // --- LOGIKA IKON NOTIFIKASI ANDA ---
         btnNotif = new JButton("0");
         btnNotif.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnNotif.setFocusPainted(false);
@@ -313,6 +316,7 @@ public class TokoOnlineGUI extends JFrame {
         if (lblMasukVal != null) lblMasukVal.setText(String.valueOf(controller.getTotalQtyMasuk()));
         if (lblKeluarVal != null) lblKeluarVal.setText(String.valueOf(controller.getTotalQtyKeluar()));
 
+        // --- LOGIKA NOTIFIKASI DI PERTAHANKAN (MENYESUAIKAN ADA IKON ATAU TIDAK) ---
         if (btnNotif != null) {
             btnNotif.setText((btnNotif.getIcon() == null ? "🔔 " : "") + warningCount); 
             btnNotif.setForeground(warningCount > 0 ? Color.RED : Color.DARK_GRAY);
