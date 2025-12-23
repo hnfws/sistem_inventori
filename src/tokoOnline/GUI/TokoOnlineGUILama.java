@@ -9,7 +9,8 @@ import java.time.format.DateTimeFormatter;
 import tokoOnline.BackEnd.Barang;
 import tokoOnline.BarangController;
 
-public class TokoOnlineGUI extends JFrame {
+
+public class TokoOnlineGUILama extends JFrame {
     private Barang barang = new Barang();
     private BarangController controller = new BarangController(barang); 
     
@@ -20,6 +21,7 @@ public class TokoOnlineGUI extends JFrame {
 
     private JLabel lblTotalVal, lblMasukVal, lblKeluarVal;
 
+    // Palette Warna ASLI ANDA (Dipertahankan 100%)
     Color primaryColor = new Color(41, 128, 185);
     Color successColor = new Color(39, 174, 96);
     Color warningColor = new Color(243, 156, 18);
@@ -27,7 +29,7 @@ public class TokoOnlineGUI extends JFrame {
     Color bgColor = new Color(236, 240, 241);
     Color headerBlue = new Color(52, 152, 219); 
 
-    public TokoOnlineGUI() {
+    public TokoOnlineGUILama() {
         try { UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName()); } catch (Exception e) {}
         
         setTitle("Inventory Management System");
@@ -55,6 +57,7 @@ public class TokoOnlineGUI extends JFrame {
         updateTabel();
     }
 
+    // --- METODE PENDUKUNG IKON ---
     private ImageIcon getScaledIcon(String path, int width, int height) {
         try {
             java.net.URL imgURL = getClass().getResource("/tokoOnline/" + path);
@@ -118,6 +121,7 @@ public class TokoOnlineGUI extends JFrame {
         txtSearch = new JTextField(15);
         txtSearch.setPreferredSize(new Dimension(150, 35));
         
+        // --- LOGIKA IKON NOTIFIKASI ANDA ---
         btnNotif = new JButton("0");
         btnNotif.setFont(new Font("Segoe UI", Font.BOLD, 14));
         btnNotif.setFocusPainted(false);
@@ -313,6 +317,7 @@ public class TokoOnlineGUI extends JFrame {
         if (lblMasukVal != null) lblMasukVal.setText(String.valueOf(controller.getTotalQtyMasuk()));
         if (lblKeluarVal != null) lblKeluarVal.setText(String.valueOf(controller.getTotalQtyKeluar()));
 
+        // --- LOGIKA NOTIFIKASI DI PERTAHANKAN (MENYESUAIKAN ADA IKON ATAU TIDAK) ---
         if (btnNotif != null) {
             btnNotif.setText((btnNotif.getIcon() == null ? "🔔 " : "") + warningCount); 
             btnNotif.setForeground(warningCount > 0 ? Color.RED : Color.DARK_GRAY);
@@ -326,6 +331,6 @@ public class TokoOnlineGUI extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new TokoOnlineGUI().setVisible(true));
+        SwingUtilities.invokeLater(() -> new TokoOnlineGUILama().setVisible(true));
     }
 }
